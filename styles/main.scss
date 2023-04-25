@@ -17,16 +17,18 @@ body {
   );
 }
 
-
 footer {
   width: 100%;
   background-color: #000;
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.foot-content {
   display: flex;
   flex-direction: row;
-  // justify-content: space-around;
+  margin-top: 20px;
 }
 
 .website-details {
@@ -45,6 +47,11 @@ footer a {
   text-decoration: none;
 }
 
+footer a:hover {
+  color: #d59979;
+  text-decoration: none;
+}
+
 footer .logo {
   max-height: 200px;
   width: auto;
@@ -56,4 +63,13 @@ footer .logo {
 .footer-list {
   list-style: none;
   color: #fff;
+  font-size: 1.5rem;
+}
+
+.social-icon {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 2rem;
 }
