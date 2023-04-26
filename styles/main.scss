@@ -4,7 +4,22 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   background: #fff;
+}
+
+.scrolling-wrapper{
+	overflow-x: auto;
+}
+
+.landing_page_1_img{
+  height:400px;
+  width:auto;
+}
+
+.top_container_content{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
