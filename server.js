@@ -49,12 +49,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  const user = req.params;
-  if (!user) {
-    res.render("login");
-  } else {
-    res.redirect("/");
-  }
+  res.render("login");
 });
 
 app.get("/create", (req, re) => {
@@ -65,10 +60,10 @@ app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
-
 app.get("/listings", (req, res) => {
   res.render("listingpage");
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
