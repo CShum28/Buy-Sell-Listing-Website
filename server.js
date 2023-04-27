@@ -45,7 +45,7 @@ app.use("/users", usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("login");
+  res.render("index");
 });
 
 app.get("/login", (req, res) => {
@@ -67,4 +67,8 @@ app.get("/favourites", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
+});
+
+app.get("/listings", (req, res) => {
+  res.render("listingpage");
 });
