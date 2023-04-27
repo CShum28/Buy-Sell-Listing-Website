@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/listingpage.css">
+  <link rel="stylesheet" href="/styles/footer.css">
+
+  <title>Listing Page</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <div class="container">
+    <h1 class="my-4">Listing Page</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Item Title</h5>
+            <p class="card-text">Item Description</p>
+            <p class="card-text"><small class="text-muted">Posted 1 week ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Item Title</h5>
+            <p class="card-text">Item Description</p>
+            <p class="card-text"><small class="text-muted">Posted 2 weeks ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Item Title</h5>
+            <p class="card-text">Item Description</p>
+            <p class="card-text"><small class="text-muted">Posted 3 weeks ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <%- include('partials/footer') %>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
