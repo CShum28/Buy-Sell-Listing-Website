@@ -36,3 +36,5 @@ CREATE TABLE messages (
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   content TEXT NOT NULL
 );
+
+
