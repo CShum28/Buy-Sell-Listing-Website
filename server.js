@@ -60,6 +60,10 @@ app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
 
+app.get("/message", (req, res) => {
+  res.render("message");
+});
+
 app.get("/listings", (req, res) => {
   res.render("listingpage");
 });
