@@ -19,6 +19,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease-out;
+  z-index: 0;
 }
 
 .card:hover {
@@ -79,4 +80,24 @@
   color: #0a58ca;
   background-color: #e9ecef;
   border-color: #ddd;
+}
+
+.card-text{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite-button:hover::after {
+  content: "Click to add to your favourites!";
+  position: absolute;
+  bottom: calc(12px);
+  right: calc(5px);
+  padding: 5px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
 }
