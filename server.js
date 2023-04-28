@@ -52,12 +52,16 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/create", (req, re) => {
-  res.render("create");
+app.get("/create", (req, res) => {
+  res.render("create-listing");
 });
 
 app.get("/favourites", (req, res) => {
   res.render("favourites");
+});
+
+app.get("/message", (req, res) => {
+  res.render("message");
 });
 
 app.get("/listings", (req, res) => {
