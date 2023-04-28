@@ -13,9 +13,11 @@
 }
 
 .item-details,
-.send-message {
+.send-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .item-details {
@@ -23,8 +25,15 @@
   align-items: center;
 }
 
-.send-message {
+.send-container {
   max-width: auto;
+}
+
+
+.send-container button{
+  height: 3rem;
+  position: relative;
+  bottom: 0;
 }
 
 .item-details img {
@@ -33,4 +42,8 @@
 
 .chat-messages {
   margin: 1rem;
+}
+
+.text-send {
+  flex-grow: 2;
 }
