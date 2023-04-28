@@ -1,0 +1,10 @@
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(4,10,8,'Z8i2AXa94chYxSdoHgE3VCtq7ue7fYn70NlkM84CqKpOHO62Aw');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(6,13,7,'myXO25Q3ddgykikq3bImCMKWfisxl7tH80OZOVTDnJNrJZhqWL');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(2,7,7,'CFZnAtTNcRguYztTLciHF829dNGBCba1Y86uyvNmAzL2r6ukxW');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(4,14,27,'MDEMaJxnRLB0pVa39eZO6HPxAShcfOpPrTL52hYma9soJBBkUq');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(16,17,39,'elExQLImVHDfvJVKeAbGxy7Zln9Q6IyaxdMsGIlWP9F2oIX2qa');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(16,13,18,'v9qnoMnM2qNSmsS6nDWZF0xsFvcQHjfSIECegEc58KXT2kBZF6');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(1,8,23,'QR4L7i3tXFSK4JiqxZilaa4cd0ftCKKgHz2wHSifiMlEFJ7act');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(6,10,25,'wCzWbsHDJrM4vDEQwje1CCOzzXU2ERT2oCUxCapjbbYeYKUF3J');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(14,4,40,'pbuxAgEYO92YUPssROW34akouapCO94kIE9kkAC3lLMcfGE4lX');
+INSERT INTO messages (sender_id, receiver_id, listing_id, content) VALUES(12,18,17,'Q2P0GDj1BKPFSPPQIIRLcStNIInWub1X8Q2Mtte6dCjB6XN0yo');
