@@ -27,7 +27,7 @@ CREATE TABLE favourites (
   id SERIAL NOT NULL,
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  favourite BOOLEAN
+  deleted BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE messages (
@@ -37,5 +37,3 @@ CREATE TABLE messages (
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   content TEXT NOT NULL
 );
-
-
