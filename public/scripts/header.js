@@ -15,3 +15,7 @@ $(document).ready(function () {
     );
   }
 });
+
+$(".search-price").click(function () {
+  return `<button>Search</button>`;
+});
