@@ -15,7 +15,13 @@ body {
 .landing_main_bottom_container{
 margin-top: 10rem;
 margin-bottom: 10rem;
+flex-direction: column;
+display:flex;
+justify-content: center;
+align-items: center;
+
 }
+
 
 .container_full_width{
   width:100%;
@@ -52,4 +58,9 @@ margin-bottom: 10rem;
   max-height: 120px;
   width: auto;
   object-fit: contain;
+}
+
+.container-fluid {
+  display:flex;
+  justify-content: space-around;
 }
