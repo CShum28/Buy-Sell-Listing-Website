@@ -14,8 +14,9 @@ $(document).ready(function () {
       }
     );
   }
-});
 
-$(".search-price").click(function () {
-  return `<button>Search</button>`;
+  //show search pop up and hide
+  $(".search-price").click(function () {
+    $(".max-min-search").toggle();
+  });
 });

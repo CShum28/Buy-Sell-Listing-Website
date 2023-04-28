@@ -1,8 +1,18 @@
 .navbar {
   background-color: black !important;
+  justify-content: center;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.nav-container {
+  background-color: black;
+}
+
+.navbar a:last-child {
+  order: 3;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.max-min-search {
   color: white;
 }
 
@@ -21,4 +31,8 @@
 .search-price:hover {
   cursor: pointer;
   color: #d59979;
+}
+
+.max-min-search {
+  display: none;
 }
