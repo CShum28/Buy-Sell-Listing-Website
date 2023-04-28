@@ -12,6 +12,7 @@ body {
   max-height: 450px;
   max-width:65vw;
   position: relative;
+  overflow: hidden;
 }
 
 
@@ -86,7 +87,7 @@ align-items: center;
 
 .card{
   object-fit: contain;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 
