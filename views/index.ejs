@@ -25,6 +25,8 @@
     <script defer src="/scripts/app.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
   </head>
 
   <body>
@@ -94,7 +96,7 @@
         <p>Featured Items</p>
         <div class="container-fluid">
           <div class="scrolling-wrapper">
-            <div class="scrolling-container row flex-row flex-nowrap mt-4 pb-4 pt-2 col-11">
+            <div class="scrolling-container row flex-row flex-nowrap mt-4 pb-4 pt-2">
               <div class="col-2">
                 <div class="card card-block card-1"></div>
               </div>
@@ -139,14 +141,28 @@
                 <div class="card card-block card-10"></div>
               </div>
             </div>
-            <button class="scroll-btn scroll-left">◀</button>
-            <button class="scroll-btn scroll-right">▶</button>
+
           </div>
+          <button class="arrow-btn-left arrow-btn">◀</button>
+          <button class="arrow-btn-right arrow-btn">▶</button>
         </div>
       </div>
     </main>
+    <script>
+      $(function() {
+        // scroll the cards left when left button is clicked
+        $(".arrow-btn-left").click(function() {
+          $(".scrolling-wrapper").animate({scrollLeft: "-=200px"}, "slow");
+        });
 
+        // scroll the cards right when right button is clicked
+        $(".arrow-btn-right").click(function() {
+          $(".scrolling-wrapper").animate({scrollLeft: "+=200px"}, "slow");
+        });
+      });
+    </script>
     <!-- Clement  -->
     <%- include('partials/footer') %>
   </body>
 </html>
+
