@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS messages CASCADE;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   admin BOOLEAN NOT NULL
 );
@@ -36,3 +37,5 @@ CREATE TABLE messages (
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   content TEXT NOT NULL
 );
+
+
