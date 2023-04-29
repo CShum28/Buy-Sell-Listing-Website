@@ -15,16 +15,16 @@ router.get("/listings", async (req, res) => {
     // Get a client frmo connection pool
     const client = await pool.connect();
 
-    // SQL query to retrieve all the rows from the table titled 'listings'
+    // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
     const result = await client.query("SELECT * FROM listings");
 
-    // grab ONLY the rows
+    // grab ONLY the rows from the query and jams it into the listings variable
     const listings = result.rows;
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
 
-    // Send the listings as JSON response to the client.
+    // Send the listings variable as JSON response to the client.
     res.json(listings);
   } catch (err) {
     // If error, log the error to the console
@@ -32,7 +32,7 @@ router.get("/listings", async (req, res) => {
     res.send("Error: " + err);
   }
 
-  res.render("listingpage");
+  res.render("listingpage", { listings });
 });
 
 module.exports = router;
