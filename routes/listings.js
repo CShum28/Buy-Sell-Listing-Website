@@ -4,10 +4,10 @@ const { Pool } = require("pg");
 
 // Create the connection pool
 const pool = new Pool({
-  user: "labber",
+  user: process.env.DB_USER,
   host: "localhost",
   database: "midterm", //
-  password: "123", // Default password
+  password: process.env.DB_PASS,
 });
 
 router.get("/", async (req, res) => {
