@@ -1,8 +1,9 @@
 -- Users table seeds here (Example)
-INSERT INTO users (username, email, password, admin) VALUES('odShPt','Martin_Latham842@jh02o.tech','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','True');
-INSERT INTO users (username, email, password, admin) VALUES('yI2lmu','Michael_Rowlands5072@1kmd3.shop','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
-INSERT INTO users (username, email, password, admin) VALUES('XaWHCR','Chester_Sinclair7986@cdpfn.property','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
-INSERT INTO users (username, email, password, admin) VALUES('j6VvTZ','Owen_Barrett9272@zynuu.autos','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
+INSERT INTO users (username, email, password, admin) VALUES('admin1','admin1@mail.com','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','True');
+INSERT INTO users (username, email, password, admin) VALUES('admin2','admin2@mail.com','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','True');
+INSERT INTO users (username, email, password, admin) VALUES('clement','clement@mail.com','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
+INSERT INTO users (username, email, password, admin) VALUES('john','john@mail.com','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
+INSERT INTO users (username, email, password, admin) VALUES('jp','jp@mail.com','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
 INSERT INTO users (username, email, password, admin) VALUES('rw0Vzo','Mark_Veale2887@3wbkp.app','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','False');
 INSERT INTO users (username, email, password, admin) VALUES('2S50JY','Margaret_Reyes4681@uagvw.media','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','True');
 INSERT INTO users (username, email, password, admin) VALUES('ndZfEn','Vanessa_Young1308@jh02o.website','$2a$10$SiAizkn0.W3Pe0T6mLmQaur44T7bKLaXmpEBvpNu3hOoke4TUJwaG','True');
