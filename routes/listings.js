@@ -10,7 +10,7 @@ const pool = new Pool({
   password: "123", // Default password
 });
 
-router.get("/listings", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // Get a client frmo connection pool
     const client = await pool.connect();
@@ -23,6 +23,7 @@ router.get("/listings", async (req, res) => {
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
+    console.log(listings);
 
     // Render the listings page and pass the listings variable into it!
     res.render("listingpage", { listings: listings });

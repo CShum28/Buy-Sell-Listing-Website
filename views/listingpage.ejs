@@ -25,10 +25,12 @@
     <title>Listing Page</title>
   </head>
   <body>
+
     <%- include('partials/header') %>
     <div class="container listings-container">
       <h1 class="my-4">Listing Page</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
+
         <% listings.forEach((listing) => { %>
         <div class="col">
           <div class="card h-100">
@@ -50,7 +52,8 @@
           </div>
         </div>
         <% }) %>
-        <!-- <div class="col">
+        <!--
+        <div class="col">
           <div class="card h-100">
             <img
               src="https://via.placeholder.com/350x200"
@@ -90,9 +93,8 @@
               </p>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
-    -->
       <!-- Pagination -->
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
