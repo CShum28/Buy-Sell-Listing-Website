@@ -25,10 +25,13 @@
     <title>Listing Page</title>
   </head>
   <body>
+
     <%- include('partials/header') %>
     <div class="container listings-container">
       <h1 class="my-4">Listing Page</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <% listings.forEach((listing) => { %>
         <div class="col">
           <div class="card h-100">
             <img
@@ -37,10 +40,10 @@
               alt="..."
             />
             <div class="card-body">
-              <h5 class="card-title">Item Title</h5>
-              <p class="card-text">Item Description</p>
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text"><%= listing.description %></p>
               <p class="card-text">
-                <small class="text-muted">Posted 1 week ago</small>
+                <small class="text-muted">Posted <%= listing.posted_at %></small>
                 <button class="btn btn-link favorite-button">
                   <i class="fas fa-heart"></i>
                 </button>
@@ -48,6 +51,8 @@
             </div>
           </div>
         </div>
+        <% }) %>
+        <!--
         <div class="col">
           <div class="card h-100">
             <img
@@ -88,7 +93,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <!-- Pagination -->
       <nav aria-label="Page navigation example">
