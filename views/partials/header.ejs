@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles/header.css" />
+  </head>
+  <body>
+    <!-- header -->
+
+    <nav
+      class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top"
+    >
+      <div class="nav-container">
+        <div class="collapse navbar-collapse nav-bar" id="navbar4">
+          <ul class="navbar-nav mr-auto pl-lg-4 text-center centre-text">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/listings">All Products</a>
+            <a class="nav-link" href="/favourites">Favourites</a>
+            <a class="nav-link" href="/create">Create Listing</a>
+            <div class="search-price nav-link">Search By Price</div>
+            <a class="nav-link" href="/login">Login</a>
+          </ul>
+        </div>
+        <div class="max-min-search">
+          <form method="" action="">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Min</label>
+                <input
+                  type="integer"
+                  class="form-control min-max-input"
+                  name="min"
+                  id="inputMinPrice"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Max</label>
+                <input
+                  type="integer"
+                  class="form-control min-max-input"
+                  name="max"
+                  id="inputMaxPrice"
+                />
+              </div>
+              <button type="submit"class="btn btn-primary fas fa-search"></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <script type="text/javascript" src="/scripts/header.js"></script>
+  </body>
+</html>

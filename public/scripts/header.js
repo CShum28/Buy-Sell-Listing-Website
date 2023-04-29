@@ -14,4 +14,9 @@ $(document).ready(function () {
       }
     );
   }
+
+  //show search pop up and hide
+  $(".search-price").click(function () {
+    $(".max-min-search").toggle();
+  });
 });

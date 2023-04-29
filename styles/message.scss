@@ -1,0 +1,49 @@
+.message-container {
+  margin: 10rem 0 4rem;
+  width: 25%;
+}
+
+.chat-box {
+  height: 20rem;
+  border: 1px solid rgb(209, 207, 207);
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  overflow: scroll;
+  overflow-x:hidden;
+}
+
+.item-details,
+.send-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.item-details {
+  justify-content: center;
+  align-items: center;
+}
+
+.send-container {
+  max-width: auto;
+}
+
+
+.send-container button{
+  height: 3rem;
+  position: relative;
+  bottom: 0;
+}
+
+.item-details img {
+  height: 5rem;
+}
+
+.chat-messages {
+  margin: 1rem;
+}
+
+.text-send {
+  flex-grow: 2;
+}

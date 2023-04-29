@@ -1,0 +1,107 @@
+/* Card layout */
+.listings-container {
+  margin: 5rem 0 3rem;
+}
+
+.row-cols-1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  margin: 0.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-out;
+  z-index: 0;
+}
+
+.card:hover {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.2rem);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.text-muted {
+  font-size: 0.875rem;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 1rem;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.page-link {
+  color: #0d6efd;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.page-link:hover {
+  color: #0a58ca;
+  background-color: #e9ecef;
+  border-color: #ddd;
+}
+
+.card-text{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite-button:hover::after {
+  content: "Click to add to your favourites!";
+  position: absolute;
+  bottom: calc(12px);
+  right: calc(5px);
+  padding: 5px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
+}
