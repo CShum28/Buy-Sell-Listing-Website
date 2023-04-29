@@ -7,7 +7,7 @@ const pool = new Pool({
   user: "labber",
   host: "localhost",
   database: "midterm", //
-  password: "123", // Default password
+  password: "labber", // Default password
 });
 
 router.get("/", async (req, res) => {
