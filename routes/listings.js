@@ -5,9 +5,10 @@ const { addListing } = require("../db/queries/create")
 
 // Create the connection pool
 const pool = new Pool({
-  user: "labber",
+  user: process.env.DB_USER,
   host: "localhost",
   database: "midterm", //
+<<<<<<< HEAD
   password: "labber", // Default password
 });
 
@@ -27,6 +28,9 @@ router.post("/", (req, res) => {
     .catch(err => {
       console.log(err.message)
     })
+=======
+  password: process.env.DB_PASS,
+>>>>>>> allListingsLink
 });
 
 router.get("/", async (req, res) => {
