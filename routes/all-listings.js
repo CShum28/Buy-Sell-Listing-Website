@@ -24,15 +24,13 @@ router.get("/listings", async (req, res) => {
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
 
-    // Send the listings variable as JSON response to the client.
-    res.json(listings);
+    // Render the listings page and pass the listings variable into it!
+    res.render("listingpage", { listings: listings });
   } catch (err) {
     // If error, log the error to the console
     console.error(err);
     res.send("Error: " + err);
   }
-
-  res.render("listingpage", { listings });
 });
 
 module.exports = router;

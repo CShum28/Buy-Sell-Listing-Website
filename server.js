@@ -39,6 +39,7 @@ const allListings = require("./routes/all-listings");
 app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
+app.use("/listings", allListings);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -65,9 +66,9 @@ app.get("/message", (req, res) => {
   res.render("message");
 });
 
-app.get("/listings", (req, res) => {
-  res.render("listingpage");
-});
+// app.get("/listings", (req, res) => {
+//   res.render("listingpage");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
