@@ -16,15 +16,21 @@ router.get("/listings", async (req, res) => {
     const client = await pool.connect();
 
     // SQL query to retrieve all the rows from the table titled 'listings'
-    const result = await client.query('SELECT * FROM listings');
+    const result = await client.query("SELECT * FROM listings");
 
     // grab ONLY the rows
     const listings = result.rows;
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
-  }
 
+    // Send the listings as JSON response to the client.
+    res.json(listings);
+  } catch (err) {
+    // If error, log the error to the console
+    console.error(err);
+    res.send("Error: " + err);
+  }
 
   res.render("listingpage");
 });
