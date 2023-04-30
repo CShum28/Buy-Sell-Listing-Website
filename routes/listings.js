@@ -1,22 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
-const { addListing } = require("../db/queries/create");
-const $ = require("../public/vendor/jquery-3.0.0.js");
-// const favourites = require("./routes/favourites.js");
+const { database } = require("../db/connection");
 
 // Create the connection pool
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: "localhost",
-  database: "midterm", //
-  password: "labber", // Default password
-});
+// const pool = new Pool({
+//   user: "labber",
+//   host: "localhost",
+//   database: "midterm", //
+//   password: "labber", // Default password
+// });
 
 router.get("/", async (req, res) => {
   try {
     // Get a client frmo connection pool
-    const client = await pool.connect();
+    const client = await database.connect();
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
     const result = await client.query("SELECT * FROM listings");
@@ -41,11 +39,14 @@ router.get("/search", async (req, res) => {
   try {
     // Get a client frmo connection pool
     const client = await pool.connect();
-    const min = req.query.min *100;
-    const max = req.query.max *100;
+    const min = req.query.min * 100;
+    const max = req.query.max * 100;
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
-    const result = await client.query(`SELECT * FROM listings WHERE price >= $1 AND price <= $2`, [min, max]);
+    const result = await client.query(
+      `SELECT * FROM listings WHERE price >= $1 AND price <= $2`,
+      [min, max]
+    );
 
     // grab ONLY the rows from the query and jams it into the listings variable
     const listings = result.rows;
@@ -62,7 +63,5 @@ router.get("/search", async (req, res) => {
     res.send("Error: " + err);
   }
 });
-
-
 
 module.exports = router;
