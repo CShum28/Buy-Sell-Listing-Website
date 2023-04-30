@@ -1,13 +1,38 @@
-nav {
+.navbar {
+  background-color: black !important;
+  justify-content: center;
+}
+
+.nav-container {
   background-color: black;
-
 }
 
-.dropdown-toggle::after {
-    display: none;
-  }
-.text-decoration-none{
-  text-decoration: none!important;
+.navbar a:last-child {
+  order: 3;
 }
-/* Font Awesome Icons have variable width. Added fixed width to fix that.*/
-.icon-width { width: 2rem;}
+
+.navbar-light .navbar-nav .nav-link,
+.max-min-search {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #d59979;
+}
+
+.centre-text {
+  font-size: 1.5rem;
+}
+
+.search-price {
+  color: white;
+}
+
+.search-price:hover {
+  cursor: pointer;
+  color: #d59979;
+}
+
+.max-min-search {
+  display: none;
+}
