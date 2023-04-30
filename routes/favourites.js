@@ -1,11 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
-const { addListing } = require("../db/queries/create");
+// const { addListing } = require("../db/queries/create");
 
-router.post("/favourites", async (req, res) => {
-  const itemID = req.body.itemID;
-  const userID = req.body.user.id;
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: "localhost",
+  database: "midterm", //
+  password: "labber", // Default password
+});
+
+router.post("/", async (req, res) => {
+  // console.log(req.body);
+
+  const itemID = req.body["itemID"];
+  const userID = req.body["userID"];
+  // console.log(req.body);
+  // console.log(itemID);
+  // console.log(userID);
+
   try {
     const client = await pool.connect();
 
@@ -24,6 +37,10 @@ router.post("/favourites", async (req, res) => {
     const insertFavourite =
       "INSERT INTO favourites (listing_id, user_id) VALUES ($1, $2)";
     await client.query(insertFavourite, [itemID, userID]);
+    // client.release();
+    const selectFavourites = "SELECT * FROM favourites";
+    const result2 = await client.query(selectFavourites);
+    console.log(result2.rows);
     client.release();
     res.sendStatus(200);
   } catch (err) {
@@ -31,3 +48,5 @@ router.post("/favourites", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+module.exports = router;
