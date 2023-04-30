@@ -1,6 +1,6 @@
 // PG database client/connection setup
 const { Pool } = require("pg");
-
+require("dotenv").config();
 const dbParams = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -11,12 +11,6 @@ const dbParams = {
 
 const database = new Pool(dbParams);
 
-// db.connect();
 
-const getUsers = () => {
-  return database.query("SELECT * FROM users;").then((data) => {
-    return data.rows;
-  });
-};
 
 module.exports = { database, getUsers };
