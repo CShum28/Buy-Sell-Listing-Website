@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 router.get("/search", async (req, res) => {
   try {
     // Get a client frmo connection pool
-    const client = await pool.connect();
+    const client = await database.connect();
     const min = req.query.min * 100;
     const max = req.query.max * 100;
 
