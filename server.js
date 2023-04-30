@@ -32,6 +32,7 @@ const userApiRoutes = require("./routes/users-api");
 const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
+const createListing = require("./routes/create-listing");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -40,6 +41,7 @@ app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 app.use("/listings", listingsRoutes);
+app.use("/create-listing", createListing);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -54,10 +56,6 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/create", (req, res) => {
-  res.render("create-listing");
-});
-
 app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
@@ -65,10 +63,6 @@ app.get("/favourites", (req, res) => {
 app.get("/message", (req, res) => {
   res.render("message");
 });
-
-// app.get("/listings", (req, res) => {
-//   res.render("listingpage");
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

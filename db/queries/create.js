@@ -7,6 +7,7 @@ const addListing = function (listing) {
       .then(res => {
         console.log('addListing')
         console.log(res.rows[0])
+        db.end(); //end pool - close the database
         return res.rows[0];
       })
       .catch(err => {
