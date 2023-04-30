@@ -11,6 +11,4 @@ const dbParams = {
 
 const database = new Pool(dbParams);
 
-
-
-module.exports = { database, getUsers };
+module.exports = { database };
