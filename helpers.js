@@ -32,4 +32,16 @@ const getUserById = async (id) => {
     });
 };
 
-module.exports = { getUserByUsername, getUserById };
+const getUsers = async () => {
+  return await database
+    .query("SELECT * FROM users;")
+    .then((data) => {
+      // console.log(data.rows);
+      return data.rows;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+module.exports = { getUserByUsername, getUserById, getUsers };
