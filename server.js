@@ -102,13 +102,13 @@ app.post("/login", async (req, res) => {
 });
 
 // Return information about the current user (based on cookie value)
-app.get("/login", async (req, res) => {
+app.get("/login", (req, res) => {
   const username = req.session.username;
   if (!username) {
     return res.send({ message: "not logged in" });
   }
 
-  await getUserByUsername(username)
+  getUserByUsername(username)
     .then((user) => {
       if (!user) {
         return res.send({ error: "no user with that id" });
