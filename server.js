@@ -5,6 +5,13 @@ require("dotenv").config();
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
+const { pool, getUserByUsername } = require("./helpers");
+const { database } = require("./db/connection");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+const myPlaintextPassword = "s0//P4$$w0rD";
+const someOtherPlaintextPassword = "not_bacon";
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -25,6 +32,15 @@ app.use(
   })
 );
 app.use(express.static("public"));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  })
+);
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -53,6 +69,57 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+// Login a user
+app.post("/login", (req, res) => {
+  const inPuttedUsername = req.query.username;
+  const inPuttedPassword = req.query.password;
+  console.log(inPuttedPassword);
+
+  database.getUserByUsername(inPuttedUsername).then((user) => {
+    if (!user) {
+      return res.send({ error: "no user with that username" });
+    }
+
+    if (!bcrypt.compareSync(inPuttedPassword, user.password)) {
+      return res.send({ error: "error" });
+    }
+
+    req.session.username = user.username;
+    res.send({
+      user: {
+        name: username,
+        email: user.email,
+        id: user.id,
+      },
+    });
+  });
+});
+
+// Return information about the current user (based on cookie value)
+app.get("/login", (req, res) => {
+  const username = req.session.username;
+  if (!username) {
+    return res.send({ message: "not logged in" });
+  }
+
+  database
+    .getUserByUsername(username)
+    .then((user) => {
+      if (!user) {
+        return res.send({ error: "no user with that id" });
+      }
+
+      res.send({
+        user: {
+          name: username,
+          email: user.email,
+          id: user.id,
+        },
+      });
+    })
+    .catch((e) => res.send(e));
 });
 
 app.get("/create", (req, res) => {
