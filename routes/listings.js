@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
-const { addListing } = require("../db/queries/create")
+const { addListing } = require("../db/queries/create");
+const $ = require("../public/vendor/jquery-3.0.0.js");
+// const favourites = require("./routes/favourites.js");
 
 // Create the connection pool
 const pool = new Pool({
   user: process.env.DB_USER,
   host: "localhost",
   database: "midterm", //
-<<<<<<< HEAD
   password: "labber", // Default password
 });
 
@@ -17,20 +18,17 @@ const pool = new Pool({
 
 // Creating a new listing and redirect back to /listings page
 router.post("/", (req, res) => {
-  console.log('route post /')
-  console.log(req.body)
+  console.log("route post /");
+  console.log(req.body);
   addListing(req.body)
-    .then( info =>{
-      console.log('info');
+    .then((info) => {
+      console.log("info");
       console.log(info);
-      res.redirect('/listings')
+      res.redirect("/listings");
     })
-    .catch(err => {
-      console.log(err.message)
-    })
-=======
-  password: process.env.DB_PASS,
->>>>>>> allListingsLink
+    .catch((err) => {
+      console.log(err.message);
+    });
 });
 
 router.get("/", async (req, res) => {
