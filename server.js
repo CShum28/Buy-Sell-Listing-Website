@@ -1,12 +1,12 @@
 // load .env data into process.env
-require("dotenv").config();
+// require("dotenv").config();
 
 // Web server config
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { pool, getUserByUsername } = require("./helpers");
+const { getUserByUsername, getUserById, getUsers } = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -32,6 +32,15 @@ app.use(
   })
 );
 app.use(express.static("public"));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  })
+);
 app.use(
   cookieSession({
     name: "session",
@@ -72,47 +81,47 @@ app.get("/login", (req, res) => {
 });
 
 // Login a user
-// JP's note. Still working on this.
-app.post("/login", (req, res) => {
-  const inPuttedUsername = req.query.username;
-  const inPuttedPassword = req.query.password;
-  console.log(inPuttedPassword);
+app.post("/login", async (req, res) => {
+  const inPuttedUsername = req.body.username;
+  const inPuttedPassword = req.body.password;
 
-  database.getUserByUsername(inPuttedUsername).then((user) => {
-    if (!user) {
-      return res.send({ error: "no user with that username" });
-    }
+  await getUserByUsername(inPuttedUsername)
+    .then((user) => {
+      console.log("Found user", user);
+      if (!user) {
+        return res.send({ error: "no user with that username" });
+      }
 
-    if (!bcrypt.compareSync(inPuttedPassword, user.password)) {
-      return res.send({ error: "error" });
-    }
+      if (!bcrypt.compareSync(inPuttedPassword, user.password)) {
+        return res.send({ error: "error" });
+      }
 
-    req.session.username = user.username;
-    res.send({
-      user: {
-        name: username,
-        email: user.email,
-        id: user.id,
-      },
+      req.session.username = user.username;
+      res.send({
+        user: {
+          name: user.username,
+          email: user.email,
+          id: user.id,
+        },
+      });
+    })
+    .catch((error) => {
+      console.error(error);
     });
-  });
 });
 
 // Return information about the current user (based on cookie value)
-// JP's note. Still working on this
 app.get("/login", (req, res) => {
   const username = req.session.username;
   if (!username) {
     return res.send({ message: "not logged in" });
   }
 
-  database
-    .getUserByUsername(username)
+  getUserByUsername(username)
     .then((user) => {
       if (!user) {
         return res.send({ error: "no user with that id" });
       }
-
       res.send({
         user: {
           name: username,
