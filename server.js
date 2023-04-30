@@ -72,6 +72,7 @@ app.get("/login", (req, res) => {
 });
 
 // Login a user
+// JP's note. Still working on this.
 app.post("/login", (req, res) => {
   const inPuttedUsername = req.query.username;
   const inPuttedPassword = req.query.password;
@@ -98,6 +99,7 @@ app.post("/login", (req, res) => {
 });
 
 // Return information about the current user (based on cookie value)
+// JP's note. Still working on this
 app.get("/login", (req, res) => {
   const username = req.session.username;
   if (!username) {
