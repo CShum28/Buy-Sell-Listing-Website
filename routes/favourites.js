@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
+const cookieSession = require("cookie-session");
+const { getUserByUsername, getUserById, getUsers } = require("../helpers");
 // const { addListing } = require("../db/queries/create");
+
+// res.render("listingpage", { listings: listings, user: user });
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -11,10 +15,13 @@ const pool = new Pool({
 });
 
 router.post("/", async (req, res) => {
+  const username = req.session.username;
+  const user = await getUserByUsername(username);
+  console.log(user.id);
   // console.log(req.body);
 
   const itemID = req.body["itemID"];
-  const userID = req.body["userID"];
+  const userID = user.id;
   // console.log(req.body);
   // console.log(itemID);
   // console.log(userID);
@@ -47,6 +54,13 @@ router.post("/", async (req, res) => {
     console.error(err);
     res.sendStatus(500);
   }
+});
+
+router.get("/", async (req, res) => {
+  const username = req.session.username;
+  const user = await getUserByUsername(username);
+
+  res.render("listingpage", { listings: listings, user: user });
 });
 
 module.exports = router;
