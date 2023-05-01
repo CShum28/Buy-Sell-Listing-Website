@@ -58,6 +58,8 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
+const createRoutes = require("./routes/create-listing")
+// const loginRoutes = require("./routes/login")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -66,18 +68,30 @@ app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 app.use("/listings", listingsRoutes);
 app.use("/favourites", favourites);
+app.use("/create-listing", createRoutes);
+// app.use("/login", loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", async (req, res) => {
+  const username = req.session.username;
+  const user = await getUserByUsername(username);
+  res.render("index", { user: user })
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
+app.get("/login", async (req, res) => {
+  const username = req.session.username;
+  if (!username){
+    const username = req.session.username;
+    const user = await getUserByUsername(username);
+    console.log(user);
+    res.render("login", { user: user })
+  } else {
+    res.redirect('/');
+  }
 });
 
 // Login a user
@@ -97,45 +111,21 @@ app.post("/login", async (req, res) => {
       }
 
       req.session.username = user.username;
-      res.send({
-        user: {
-          name: user.username,
-          email: user.email,
-          id: user.id,
-        },
-      });
+      res.redirect('/')
     })
     .catch((error) => {
       console.error(error);
     });
 });
 
-// Return information about the current user (based on cookie value)
-app.get("/login", (req, res) => {
-  const username = req.session.username;
-  if (!username) {
-    return res.send({ message: "not logged in" });
-  }
+// Logout a user
 
-  getUserByUsername(username)
-    .then((user) => {
-      if (!user) {
-        return res.send({ error: "no user with that id" });
-      }
-      res.send({
-        user: {
-          name: username,
-          email: user.email,
-          id: user.id,
-        },
-      });
-    })
-    .catch((e) => res.send(e));
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
 });
 
-app.get("/create", (req, res) => {
-  res.render("create-listing");
-});
+// ----
 
 app.get("/favourites", (req, res) => {
   res.render("favourites");

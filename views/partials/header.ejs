@@ -24,12 +24,35 @@
       <div class="nav-container">
         <div class="collapse navbar-collapse nav-bar" id="navbar4">
           <ul class="navbar-nav mr-auto pl-lg-4 text-center centre-text">
-            <a class="nav-link" href="/">Home</a>
+            <!-- <a class="nav-link" href="/">Home</a>
             <a class="nav-link" href="/listings">All Products</a>
             <a class="nav-link" href="/favourites">Favourites</a>
             <a class="nav-link" href="/create-listing">Create Listing</a>
             <div class="search-price nav-link">Search By Price</div>
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/login">Login</a> -->
+            <% if (user && user.admin === false) { %>
+              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/listings">All Products</a>
+              <a class="nav-link" href="/favourites">Favourites</a>
+              <p class="nav-link">Logged in as: <%= user.username %> </p>
+              <form method="POST" action="/logout">
+                <button class="btn btn-primary"  type="submit">Logout</button>
+              </form>
+            <% } else if (user && user.admin === true) { %>
+              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/listings">All Products</a>
+              <a class="nav-link" href="/favourites">Favourites</a>
+              <a class="nav-link" href="/create-listing">Create Listing</a>
+              <p class="nav-link">Logged in as: <%= user.username %> </p>
+              <form method="POST" action="/logout">
+                <button class="btn btn-primary"  type="submit">Logout</button>
+              </form>
+            <% } else { %>
+              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/listings">All Products</a>
+              <div class="search-price nav-link">Search By Price</div>
+              <a class="nav-link" href="/login">Login</a>
+            <% } %>
           </ul>
         </div>
         <div class="max-min-search">
