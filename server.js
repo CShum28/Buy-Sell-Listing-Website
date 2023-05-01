@@ -58,7 +58,7 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
-const createRoutes = require("./routes/create-listing")
+const createRoutes = require("./routes/create-listing");
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -79,18 +79,18 @@ app.use("/create-listing", createRoutes);
 app.get("/", async (req, res) => {
   const username = req.session.username;
   const user = await getUserByUsername(username);
-  res.render("index", { user: user })
+  res.render("index", { user: user });
 });
 
 app.get("/login", async (req, res) => {
   const username = req.session.username;
-  if (!username){
+  if (!username) {
     const username = req.session.username;
     const user = await getUserByUsername(username);
     console.log(user);
-    res.render("login", { user: user })
+    res.render("login", { user: user });
   } else {
-    res.redirect('/');
+    res.redirect("/");
   }
 });
 
@@ -111,7 +111,7 @@ app.post("/login", async (req, res) => {
       }
 
       req.session.username = user.username;
-      res.redirect('/')
+      res.redirect("/");
     })
     .catch((error) => {
       console.error(error);

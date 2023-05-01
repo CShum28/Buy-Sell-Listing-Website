@@ -36,6 +36,7 @@ router.post("/", async (req, res) => {
 
     // If a result is returned, it is implied that the item already exists in the favourites table.
     if (result.rows.length > 0) {
+      console.log("Can't add a favourite a second time!");
       client.release();
       res.sendStatus(200);
       return;
@@ -59,8 +60,27 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   const username = req.session.username;
   const user = await getUserByUsername(username);
+  const userID = user.id;
 
-  res.render("listingpage", { listings: listings, user: user });
+  try {
+    const client = await pool.connect();
+    const getFavouriteListings =
+      "SELECT listings.title, listings.description, listings.price FROM listings JOIN favourites ON listings.id = favourites.listing_id WHERE favourites.user_id = $1;";
+    const favouriteListingsResult = await client.query(getFavouriteListings, [
+      userID,
+    ]);
+    const result = favouriteListingsResult.rows;
+    console.log(result);
+
+    // console.log(favouriteListingsResult.rows);
+    res.render("listingpage", {
+      listings: result,
+      user: user,
+    });
+  } catch (err) {
+    // console.error(err);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
