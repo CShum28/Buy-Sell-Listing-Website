@@ -57,28 +57,38 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Route to display the list of favourite listings for a specific user
 router.get("/", async (req, res) => {
+  // Get the username from the session
   const username = req.session.username;
+  // Get the user object from the database using the username
   const user = await getUserByUsername(username);
+  // Get the user ID from the user object
   const userID = user.id;
 
   try {
+    // Connect to the database using the pool
     const client = await pool.connect();
+    // Query to get the favourite listings for the user from the listings and favourites tables
     const getFavouriteListings =
       "SELECT listings.title, listings.description, listings.price FROM listings JOIN favourites ON listings.id = favourites.listing_id WHERE favourites.user_id = $1;";
+    // Execute the query with the user ID parameter and get the result set
     const favouriteListingsResult = await client.query(getFavouriteListings, [
       userID,
     ]);
+    // Extract the rows from the result set
     const result = favouriteListingsResult.rows;
-    console.log(result);
+    // console.log(result);
 
     // console.log(favouriteListingsResult.rows);
+    // Render the listing page with the favourite listings and user object as parameters
     res.render("listingpage", {
       listings: result,
       user: user,
     });
   } catch (err) {
-    // console.error(err);
+    console.error(err);
+    // Handle errors by sending an HTTP 500 status code
     res.sendStatus(500);
   }
 });
