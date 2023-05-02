@@ -69,4 +69,15 @@ const getUserId = async (username) => {
     });
 };
 
-module.exports = { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  };
+// Get messages between based on user and listing
+
+const getMessagesOnListing = async (user, listing) => {
+  return database
+  .query(`SELECT * FROM messages WHERE sender_id = $1 AND listing_id = $2`, [user, listing])
+  .then(data => {
+    console.log(data.rows)
+    return data.rows;
+  })
+}
+
+module.exports = { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, getMessagesOnListing  };
