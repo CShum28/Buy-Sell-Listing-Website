@@ -6,7 +6,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { getUserByUsername, getUserById, getUsers } = require("./helpers");
+const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  } = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -59,6 +59,7 @@ const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
 const createRoutes = require("./routes/create-listing")
+const messageRoutes = require("./routes/messages")
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -69,6 +70,7 @@ app.use("/users", usersRoutes);
 app.use("/listings", listingsRoutes);
 app.use("/favourites", favourites);
 app.use("/create-listing", createRoutes);
+app.use("/message", messageRoutes);
 // app.use("/login", loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
@@ -82,6 +84,33 @@ app.get("/", async (req, res) => {
   res.render("index", { user: user })
 });
 
+// message board - CONTINUE WORKING HERE
+
+// app.post("/message/:id", async(req, res) => {
+//   // Get the listing info
+//   const listingName = req.params.id;
+//   const listingInfo = await getListingInfo(listingName)
+
+//   // Get username of user
+//   const username = req.session.username;
+//   const user = await getUserByUsername(username)
+//   console.log(user)
+//   console.log(listingInfo)
+//   res.render('message', {user: user, listingInfo: listingInfo })
+// })
+
+// app.get("/message", async (req, res) => {
+//   const username = req.session.username;
+//   const user = await getUserByUsername(username);
+//   console.log(req.body);
+//   console.log(user);
+//   res.render("message", { user: user });
+// });
+
+
+//-------------------------------------------------------------------------------------------------------
+
+// Going to login page
 app.get("/login", async (req, res) => {
   const username = req.session.username;
   if (!username){
@@ -129,10 +158,6 @@ app.post("/logout", (req, res) => {
 
 app.get("/favourites", (req, res) => {
   res.render("favourites");
-});
-
-app.get("/message", (req, res) => {
-  res.render("message");
 });
 
 app.listen(PORT, () => {

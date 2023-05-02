@@ -22,48 +22,35 @@
 
     <div class="message-container">
       <div class="item-details">
-        <img src="/images/beer.jpg" alt="" />
-        <h2>Name of Listing</h2>
+        <h2><%= listingInfo.title %></h2>
+        <% if (listingInfo.sold) { %>
+          <p>This item is no longer avaliable - it has been sold</p>
+        <% } else { %>
+          <p>This item is still avaliable</p>
+        <% } %>
       </div>
       <!-- Chat box -->
       <div class="chat-box">
-        <div class="chat-messages">
-          <p>Admin:</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-            necessitatibus error expedita sapiente ducimus rerum blanditiis
-            nostrum perferendis commodi officiis!
-          </p>
-          <hr />
-          <p>User:</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-            necessitatibus error expedita sapiente ducimus rerum blanditiis
-            nostrum perferendis commodi officiis!
-          </p>
-          <hr />
-          <p>User:</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-            necessitatibus error expedita sapiente ducimus rerum blanditiis
-            nostrum perferendis commodi officiis!
-          </p>
+        <div id="messages-container" class="chat-messages">
+
         </div>
       </div>
       <!-- Send a message -->
       <div class="send-container">
-        <div class="form-group text-send">
-          <textarea
-            type="text"
-            class="form-control"
-            name="message"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            maxlength="500"
-            placeholder="500 characters max"
-          ></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Send</button>
+        <form method="POST" action='/message/<%= listingInfo.title %>/sent'>
+          <div class="form-group text-send">
+            <textarea
+              type="text"
+              class="form-control"
+              name="message"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              maxlength="500"
+              placeholder="500 characters max"
+            ></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
       </div>
     </div>
 

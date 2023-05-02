@@ -56,8 +56,10 @@ router.get("/search", async (req, res) => {
 
     // Render the listings page and pass the listings variable into it!
 
-
-    res.render("listingpage", { listings: listings });
+    // Clement added this
+    const username = req.session.username;
+    const user = await getUserByUsername(username);
+    res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
     // If error, log the error to the console
     console.error(err);

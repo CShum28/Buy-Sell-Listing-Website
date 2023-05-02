@@ -1,14 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { getUserByUsername, getUserById, getUsers } = require("../helpers");
+const { getUserByUsername, getUserById, getUsers, getUserId } = require("../helpers");
 
 const { addListing } = require("../db/queries/create")
 
 // Creating a new listing and redirect back to /listings page
-router.post("/", (req, res) => {
-  console.log('route post /')
-  console.log(req.body)
-  addListing(req.body)
+router.post("/", async (req, res) => {
+  // using the user name from req.session(cookies)
+  const username = req.session.username;
+  // fetching the user_id and using it inside of addListings
+  // attaching user_id to a specific listing
+  const user_id = await getUserId(username);
+  addListing(req.body, user_id)
     .then( info =>{
       console.log('info');
       console.log(info);
