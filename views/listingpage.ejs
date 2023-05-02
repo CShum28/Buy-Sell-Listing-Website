@@ -54,6 +54,10 @@
                 <button class="btn btn-link favorite-button">
                   <i class="fas fa-heart"></i>
                 </button>
+                <!-- message admin button -->
+                <form method="POST" action="/message/<%= listing.title %>">
+                  <button class="btn btn-success" type="submit">Send Message</button>
+                </form>
               </p>
             </div>
           </div>

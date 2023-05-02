@@ -44,4 +44,29 @@ const getUsers = async () => {
     });
 };
 
-module.exports = { getUserByUsername, getUserById, getUsers };
+// Get listing information
+
+const getListingInfo = async (listing) => {
+  return await database
+  .query(`SELECT * FROM listings WHERE title = $1;`, [listing])
+  .then(res => {
+    return res.rows[0]
+  })
+  .catch(err => console.log(err.message));
+}
+
+// Get user id
+
+const getUserId = async (username) => {
+  return database
+    .query(`SELECT id FROM users WHERE username = $1`, [username])
+    .then((data) => {
+      console.log(data.rows[0])
+      return data.rows[0].id;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+module.exports = { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  };

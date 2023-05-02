@@ -34,6 +34,7 @@
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/listings">All Products</a>
               <a class="nav-link" href="/favourites">Favourites</a>
+              <div class="search-price nav-link">Search By Price</div>
               <p class="nav-link">Logged in as: <%= user.username %> </p>
               <form method="POST" action="/logout">
                 <button class="btn btn-primary"  type="submit">Logout</button>
@@ -42,8 +43,9 @@
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/listings">All Products</a>
               <a class="nav-link" href="/favourites">Favourites</a>
+              <div class="search-price nav-link">Search By Price</div>
               <a class="nav-link" href="/create-listing">Create Listing</a>
-              <p class="nav-link">Logged in as: <%= user.username %> </p>
+              <p class="nav-link">Logged in as: <%= user.username %> (Admin Account)</p>
               <form method="POST" action="/logout">
                 <button class="btn btn-primary"  type="submit">Logout</button>
               </form>
