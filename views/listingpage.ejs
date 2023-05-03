@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/styles/layout.css" />
     <link rel="stylesheet" href="/styles/footer.css" />
     <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/listingpage.css"/>
     <!-- Load bootstrap css -->
     <link
       rel="stylesheet"
@@ -32,7 +33,7 @@
       <h1 class="my-4">Listing Page</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% listings.forEach((listing) => { %>
-<!--
+        <!--
           Determine whether item is sold. use if statement
           Create a new div with same height and width as current card. set opacity to 50% color black.
           inside the div as a p tag then write SOLD OUT in white.
@@ -40,7 +41,7 @@
           Set the class on all buttons to be disabled
           -->
 
-        <div class="col">         
+        <div class="col">
 
           <div
             class="card h-100"
@@ -49,6 +50,10 @@
             <img
               src="<%= listing.photo_url %>"
             />
+            <div class="sold">
+           <p id="sold-text">ITEM SOLD</p>
+           </div>
+
             <div class="card-body">
               <h5 class="card-title"><%= listing.title %></h5>
               <p class="card-text"><%= listing.description %></p>
@@ -65,13 +70,15 @@
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
                 <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
-                <button><i class="marksoldbutton"></i> Mark As Sold</button>                
+                <button><i class="marksoldbutton"></i> Mark As Sold</button>
               </p>
             </div>
+
+
           </div>
-           <div class="sold"> 
-           <%= '<p id="sold-text">ITEM SOLD</p>' %>
-           </div>    
+
+
+
 
         </div>
         <% }) %>
