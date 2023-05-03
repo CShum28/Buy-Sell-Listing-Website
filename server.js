@@ -160,6 +160,17 @@ app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
 
+//Mark item as sold
+app.patch("/:id/sold", (req, res) => {
+/*
+How to make patch request in ejs
+Pass in the id with the request
+Access resource in the database by the id
+Change the bolean value to true
+*/
+
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
