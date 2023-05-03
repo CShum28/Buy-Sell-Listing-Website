@@ -32,15 +32,15 @@
       <h1 class="my-4">Listing Page</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% listings.forEach((listing) => { %>
-        <div class="col">
-
-          <!--
+<!--
           Determine whether item is sold. use if statement
           Create a new div with same height and width as current card. set opacity to 50% color black.
           inside the div as a p tag then write SOLD OUT in white.
           Bonus points: Look up how to angle your text at 45 degree angle
           Set the class on all buttons to be disabled
           -->
+
+        <div class="col">         
 
           <div
             class="card h-100"
@@ -65,11 +65,14 @@
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
                 <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
-                <button><i class="marksoldbutton"></i> Mark As Sold</button>
-                <button><i class="soldbutton"></i> SOLD</button>
+                <button><i class="marksoldbutton"></i> Mark As Sold</button>                
               </p>
             </div>
           </div>
+           <div class="sold"> 
+           <%= '<p id="sold-text">ITEM SOLD</p>' %>
+           </div>    
+
         </div>
         <% }) %>
       <!-- Pagination -->
