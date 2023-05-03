@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  console.log("okay");
   $(".deletebutton").on("click", async (event) => {
     console.log("Trying to delete!");
     const itemID = $(event.currentTarget).parents(".card").data("itemid");

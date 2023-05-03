@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  console.log("okay");
   $(".favorite-button").on("click", async (event) => {
     // console.log("Test!");
     const itemID = $(event.currentTarget).parents(".card").data("itemid");

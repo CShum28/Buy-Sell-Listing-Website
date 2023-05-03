@@ -58,7 +58,9 @@
                 <form method="POST" action="/message/<%= listing.title %>">
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
-                <button class = "deletebutton"><i class="fas fa-trash-alt" ></i> Delete</button>
+                <% if (listing.user_id === user) { %>}
+                  <button class = "deletebutton"><i class="fas fa-trash-alt" ></i> Delete</button>
+                <% } %>
               </p>
             </div>
           </div>

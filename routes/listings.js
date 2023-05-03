@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
+const cookieSession = require("cookie-session");
 const { database } = require("../db/connection");
 
 //Clement added this
@@ -28,7 +29,8 @@ router.get("/", async (req, res) => {
     // Clement added this
     const username = req.session.username;
     const user = await getUserByUsername(username);
-    res.render("listingpage", { listings: listings, user: user });
+    console.log(user);
+    res.render("listingpage", { listings: listings, user: user.id });
   } catch (err) {
     // If error, log the error to the console
     console.error(err);
@@ -61,6 +63,7 @@ router.get("/search", async (req, res) => {
     // Clement added this
     const username = req.session.username;
     const user = await getUserByUsername(username);
+
     res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
     // If error, log the error to the console
