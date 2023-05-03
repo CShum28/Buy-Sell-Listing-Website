@@ -78,6 +78,27 @@ const getMessagesOnListing = async (user, listing) => {
     console.log(data.rows)
     return data.rows;
   })
+  .catch(err => console.log(err.message))
 }
 
-module.exports = { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, getMessagesOnListing  };
+// Get all of admin's listings
+
+const getAdminListings = async (user) => {
+  return database
+  .query(`SELECT * FROM listings WHERE user_id = $1`, [user])
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => console.log(err.message))
+}
+
+module.exports = {
+  getUserByUsername,
+  getUserById,
+  getUsers,
+  getListingInfo,
+  getUserId,
+  getMessagesOnListing,
+  getAdminListings
+};
+
