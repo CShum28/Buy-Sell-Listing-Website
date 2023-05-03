@@ -14,4 +14,20 @@ const pool = new Pool({
   password: "labber", // Default password
 });
 
-router.post("/", async (res, req) => {});
+router.post("/", async (res, req) => {
+  const username = req.session.username;
+  const user = await getUserByUsername(username);
+  console.log(user.id);
+  // console.log(req.body);
+
+  const itemID = req.body["itemID"];
+  const userID = user.id;
+  try {
+    const client = await pool.connect();
+    const deleteItem = "UPDATE listings SET deleted = true WHERE id = $1";
+    await client.query(deleteItem, [itemID]);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+});
