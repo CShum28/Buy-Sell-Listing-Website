@@ -1,7 +1,7 @@
 $(document).ready(() => {
   console.log("okay");
   $(".deletebutton").on("click", async (event) => {
-    // console.log("Test!");
+    console.log("Trying to delete!");
     const itemID = $(event.currentTarget).parents(".card").data("itemid");
 
     // here as a PLACEHOLDER ONLY. need to fix what's being passed as userID.
