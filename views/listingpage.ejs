@@ -33,15 +33,21 @@
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% listings.forEach((listing) => { %>
         <div class="col">
+
+          <!--
+          Determine whether item is sold. use if statement
+          Create a new div with same height and width as current card. set opacity to 50% color black.
+          inside the div as a p tag then write SOLD OUT in white.
+          Bonus points: Look up how to angle your text at 45 degree angle
+          Set the class on all buttons to be disabled
+          -->
+
           <div
             class="card h-100"
             data-itemid="<%= listing.id %>"
-            data-userid="<%= listing.user_id %>"
-          >
+            data-userid="<%= listing.user_id %>">
             <img
-              src="https://picsum.photos/300/200"
-              class="card-img-top"
-              alt="..."
+              src="<%= listing.photo_url %>"
             />
             <div class="card-body">
               <h5 class="card-title"><%= listing.title %></h5>
@@ -59,54 +65,13 @@
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
                 <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
+                <button><i class="marksoldbutton"></i> Mark As Sold</button>
+                <button><i class="soldbutton"></i> SOLD</button>
               </p>
             </div>
           </div>
         </div>
         <% }) %>
-        <!--
-        <div class="col">
-          <div class="card h-100">
-            <img
-              src="https://picsum.photos/300/200"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Item Title</h5>
-              <p class="card-text">Item Description</p>
-              <p class="card-text">
-                <small class="text-muted">Posted 2 weeks ago</small>
-                <button
-                  class="btn btn-link favorite-button"
-                  title="Add to your Favourites!"
-                >
-                  <i class="fas fa-heart"></i>
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img
-              src="https://via.placeholder.com/350x200"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Item Title</h5>
-              <p class="card-text">Item Description</p>
-              <p class="card-text">
-                <small class="text-muted">Posted 3 weeks ago</small>
-                <button class="btn btn-link favorite-button">
-                  <i class="fas fa-heart"></i>
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>-->
-      </div>
       <!-- Pagination -->
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
