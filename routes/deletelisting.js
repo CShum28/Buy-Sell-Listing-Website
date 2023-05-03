@@ -14,7 +14,7 @@ const pool = new Pool({
   password: "labber", // Default password
 });
 
-router.post("/", async (res, req) => {
+router.post("/", async (req, res) => {
   const username = req.session.username;
   const user = await getUserByUsername(username);
   console.log(user.id);
@@ -24,6 +24,19 @@ router.post("/", async (res, req) => {
   const userID = user.id;
   try {
     const client = await pool.connect();
+    const selectItem = "SELECT user_id FROM listings WHERE id = $1";
+    const result = await client.query(selectItem, [itemID]);
+    if (result.rows.length === 0) {
+      res.status(404).send("Item not found.");
+      return;
+    }
+
+    const itemUserID = result.rows[0].user_id;
+    if (itemUserID !== userID) {
+      res.status(401).semd("Unauthorized access!");
+      return;
+    }
+
     const deleteItem = "UPDATE listings SET deleted = true WHERE id = $1";
     await client.query(deleteItem, [itemID]);
   } catch (err) {
