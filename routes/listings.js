@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Pool } = require("pg");
+const cookieSession = require("cookie-session");
 const { database } = require("../db/connection");
 
 //Clement added this
@@ -12,7 +13,9 @@ router.get("/", async (req, res) => {
     const client = await database.connect();
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
-    const result = await client.query("SELECT * FROM listings");
+    const result = await client.query(
+      "SELECT * FROM listings WHERE deleted = false OR deleted IS NULL"
+    );
 
     // grab ONLY the rows from the query and jams it into the listings variable
     const listings = result.rows;
@@ -26,7 +29,8 @@ router.get("/", async (req, res) => {
     // Clement added this
     const username = req.session.username;
     const user = await getUserByUsername(username);
-    res.render("listingpage", { listings: listings, user: user  });
+    console.log(user);
+    res.render("listingpage", { listings: listings, user: user.id });
   } catch (err) {
     // If error, log the error to the console
     console.error(err);
@@ -59,6 +63,7 @@ router.get("/search", async (req, res) => {
     // Clement added this
     const username = req.session.username;
     const user = await getUserByUsername(username);
+
     res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
     // If error, log the error to the console

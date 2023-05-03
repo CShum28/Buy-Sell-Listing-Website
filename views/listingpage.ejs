@@ -56,7 +56,9 @@
                 <form method="GET" action="/message/<%= listing.title %>">
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
-                <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
+                <% if (listing.user_id === user) { %>}
+                  <button class = "deletebutton"><i class="fas fa-trash-alt" ></i> Delete</button>
+                <% } %>
               </p>
             </div>
           </div>
@@ -126,6 +128,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.min.js"></script>
     <script src="/scripts/favouriteButton.js"></script>
+    <script src="/scripts/deleteButton.js"></script>
   </body>
   <%- include('partials/footer') %>
 </html>

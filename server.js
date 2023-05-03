@@ -6,7 +6,13 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  } = require("./helpers");
+const {
+  getUserByUsername,
+  getUserById,
+  getUsers,
+  getListingInfo,
+  getUserId,
+} = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -58,8 +64,9 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
-const createRoutes = require("./routes/create-listing")
-const messageRoutes = require("./routes/messages")
+const createRoutes = require("./routes/create-listing");
+const messageRoutes = require("./routes/messages");
+const deleteRoutes = require("./routes/deletelisting");
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -71,6 +78,7 @@ app.use("/listings", listingsRoutes);
 app.use("/favourites", favourites);
 app.use("/create-listing", createRoutes);
 app.use("/message", messageRoutes);
+app.use("/delete", deleteRoutes);
 // app.use("/login", loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
@@ -106,7 +114,6 @@ app.get("/", async (req, res) => {
 //   console.log(user);
 //   res.render("message", { user: user });
 // });
-
 
 //-------------------------------------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 $(document).ready(() => {
-  $(".favorite-button").on("click", async (event) => {
-    // console.log("Test!");
+  $(".deletebutton").on("click", async (event) => {
+    console.log("Trying to delete!");
     const itemID = $(event.currentTarget).parents(".card").data("itemid");
 
     // here as a PLACEHOLDER ONLY. need to fix what's being passed as userID.
@@ -9,7 +9,7 @@ $(document).ready(() => {
 
     try {
       const response = await $.ajax({
-        url: "/favourites",
+        url: "/delete",
         method: "POST",
         data: {
           itemID: itemID,
