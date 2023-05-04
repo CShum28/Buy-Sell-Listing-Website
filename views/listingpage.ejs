@@ -30,7 +30,7 @@
   <body>
     <%- include('partials/header') %>
     <div class="container listings-container">
-      <h1 class="my-4">Listing Page</h1>
+      <!-- <h1 class="my-4">Listing Page</h1> -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% listings.forEach((listing) => { %>
         <!--
@@ -43,6 +43,14 @@
 
         <div class="col">
 
+           <% if (listing.sold) { %>
+             <div class="sold">
+           <p class="sold-text">ITEM SOLD</p>
+           </div>
+        <% } %>
+
+
+
           <div
             class="card h-100"
             data-itemid="<%= listing.id %>"
@@ -50,11 +58,10 @@
             <img
               src="<%= listing.photo_url %>"
             />
-            <div class="sold">
-           <p id="sold-text">ITEM SOLD</p>
-           </div>
+
 
             <div class="card-body">
+
               <h5 class="card-title"><%= listing.title %></h5>
               <p class="card-text"><%= listing.description %></p>
               <p class="card-text"> <b>Price:</b> $<%= listing.price / 100 %></p>
@@ -69,8 +76,11 @@
                 <form method="GET" action="/message/<%= listing.title %>">
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
-                <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
-                <button><i class="marksoldbutton"></i> Mark As Sold</button>
+
+                <% if (user && user.admin) { %>
+             <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
+             <form method="POST" action="/listings/sold/<%= listing.id %>"><button><i class="marksoldbutton"></i> Mark As Sold</button></form>
+                <% } %>
               </p>
             </div>
 
