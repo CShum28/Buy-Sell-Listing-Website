@@ -48,12 +48,22 @@ const getUsers = async () => {
 
 const getListingInfo = async (listing) => {
   return await database
-  .query(`SELECT * FROM listings WHERE title = $1;`, [listing])
-  .then(res => {
-    return res.rows[0]
-  })
-  .catch(err => console.log(err.message));
-}
+    .query(`SELECT * FROM listings WHERE title = $1;`, [listing])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch((err) => console.log(err.message));
+};
+
+// Get all listings
+const getAllListings = async () => {
+  return await database
+    .query("SELECT * FROM listings;")
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err.message));
+};
 
 // Get user id
 
@@ -61,7 +71,7 @@ const getUserId = async (username) => {
   return database
     .query(`SELECT id FROM users WHERE username = $1`, [username])
     .then((data) => {
-      console.log(data.rows[0])
+      console.log(data.rows[0]);
       return data.rows[0].id;
     })
     .catch((error) => {
@@ -73,11 +83,36 @@ const getUserId = async (username) => {
 
 const getMessagesOnListing = async (user, listing) => {
   return database
-  .query(`SELECT * FROM messages WHERE sender_id = $1 AND listing_id = $2`, [user, listing])
-  .then(data => {
-    console.log(data.rows)
-    return data.rows;
-  })
-}
+    .query(`SELECT * FROM messages WHERE sender_id = $1 AND listing_id = $2`, [
+      user,
+      listing,
+    ])
+    .then((data) => {
+      console.log(data.rows);
+      return data.rows;
+    });
+};
 
-module.exports = { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, getMessagesOnListing  };
+const updateToSold = async (listingId) => {
+  console.log(listingId);
+  return database
+    .query(`UPDATE listings SET sold = true WHERE ID = $1 returning *`, [listingId])
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+};
+
+module.exports = {
+  getUserByUsername,
+  getUserById,
+  getUsers,
+  getListingInfo,
+  getUserId,
+  getMessagesOnListing,
+  updateToSold,
+  getAllListings,
+};

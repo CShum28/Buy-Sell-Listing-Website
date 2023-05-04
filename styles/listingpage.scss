@@ -11,6 +11,30 @@
 .col {
   flex: 1;
   margin: 0.5rem;
+  position: relative;
+}
+
+.sold {
+  position: absolute;
+  height: 100%;
+  width: 95%;
+  z-index: 10;
+  background-color: black;
+  opacity: 50%;
+  padding: 1rem;
+  object-fit: contain;
+}
+
+.sold-text {
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  color: red;
+  font-size: 3rem;
+  font-weight: 600;
+  z-index: 20;
 }
 
 .card {
@@ -86,8 +110,8 @@
   border-color: #ddd;
 }
 
-.card-text{
-  display:flex;
+.card-text {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
