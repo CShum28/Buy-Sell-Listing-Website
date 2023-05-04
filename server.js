@@ -6,7 +6,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  } = require("./helpers");
+const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, updateToSold, getAllListings  } = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -161,7 +161,21 @@ app.get("/favourites", (req, res) => {
 });
 
 //Mark item as sold
-app.patch("/:id/sold", (req, res) => {
+app.post("/listings/sold/:id", async (req, res) => {
+  console.log(req.params.id)
+  await updateToSold(req.params.id)
+    .then((data) => {
+      console.log(data)
+      res.redirect("/listings");
+      // return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+});
+
+
+
 /*
 How to make patch request in ejs
 Pass in the id with the request
@@ -169,7 +183,7 @@ Access resource in the database by the id
 Change the bolean value to true
 */
 
-})
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
