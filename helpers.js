@@ -104,15 +104,6 @@ const updateToSold = async (listingId) => {
       console.error(error);
     });
 
-  // const queryString = "UPDATE listings SET sold = true WHERE ID = $1;";
-  // return database
-  //   .query(queryString, [listingId])
-  //   .then((res) => {
-  //     console.log("updateToSold");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err.message);
-  //   });
 };
 
 module.exports = {
