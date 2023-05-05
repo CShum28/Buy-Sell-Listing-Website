@@ -38,3 +38,13 @@ CREATE TABLE messages (
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   content TEXT NOT NULL
 );
+
+CREATE TABLE textmessages (
+  id SERIAL PRIMARY KEY NOT NULL,
+  sender_phone VARCHAR(20) NOT NULL,
+  receiver_phone VARCHAR(20) NOT NULL,
+  message_body TEXT NOT NULL,
+  listing_id INTEGER NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
+  listing_owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT NOW()
+);
