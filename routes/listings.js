@@ -26,10 +26,8 @@ router.get("/", async (req, res) => {
 
     // Render the listings page and pass the listings variable into it!
 
-    // Clement added this
     const username = req.session.username;
-    let user = await getUserByUsername(username);
-    // console.log(user);
+    const user = await getUserByUsername(username);
     res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
     // If error, log the error to the console

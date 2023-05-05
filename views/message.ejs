@@ -32,16 +32,19 @@
       <!-- Chat box -->
       <div class="chat-box">
         <div id="messages-container" class="chat-messages">
-          <% messages.forEach(message => { %>
-            <h6><%= user.username %>:</h6>
-            <p><%= message.content %></p>
-            <hr>
-          <% }) %>
+            <% if (messages) { %>
+              <% messages.forEach(message => { %>
+                <h6><%= message.sender_id %>:</h6>
+                <p><%= message.content %></p>
+                <hr>
+              <% }) %>
+            <% } %>
+
         </div>
       </div>
       <!-- Send a message -->
       <div class="send-container">
-        <form method="POST" action='/message/<%= listingInfo.title %>'>
+        <form method="POST" action='/message/<%= listingInfo.title %>?receiverId=<%= receiverId %>'>
           <div class="form-group text-send">
             <textarea
               type="text"

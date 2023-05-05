@@ -13,7 +13,6 @@ const pool = new Pool({
   database: "midterm", //
   password: "labber", // Default password
 });
-
 router.post("/", async (req, res) => {
   const username = req.session.username;
   const user = await getUserByUsername(username);

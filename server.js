@@ -58,8 +58,9 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
-const createRoutes = require("./routes/create-listing");
-const messageRoutes = require("./routes/messages");
+const createRoutes = require("./routes/create-listing")
+const messageRoutes = require("./routes/messages")
+const adminListingRoutes = require("./routes/admin-listings")
 const deleteRoutes = require("./routes/deletelisting");
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
@@ -72,6 +73,7 @@ app.use("/listings", listingsRoutes);
 app.use("/favourites", favourites);
 app.use("/create-listing", createRoutes);
 app.use("/message", messageRoutes);
+app.use("/admin-listings", adminListingRoutes);
 app.use("/delete", deleteRoutes);
 // app.use("/login", loginRoutes);
 // Note: mount other resources here, using the same pattern above
