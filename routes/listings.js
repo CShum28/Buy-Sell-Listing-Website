@@ -26,6 +26,7 @@ router.get("/", async (req, res) => {
     // Clement added this
     const username = req.session.username;
     const user = await getUserByUsername(username);
+
     res.render("listingpage", { listings: listings, user: user  });
   } catch (err) {
     // If error, log the error to the console

@@ -24,7 +24,7 @@
       <div class="nav-container">
         <div class="collapse navbar-collapse nav-bar" id="navbar4">
           <ul class="navbar-nav mr-auto pl-lg-4 text-center centre-text">
-            <!-- if user is logged in and not an admin -->
+            <!-- if user is logged in and not an admin  -->
             <% if (user && user.admin === false) { %>
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/listings">All Products</a>
@@ -34,10 +34,11 @@
               <form method="POST" action="/logout">
                 <button class="btn btn-primary"  type="submit">Logout</button>
               </form>
-            <!-- if user is logged in and is an admin  -->
+            <!-- if user is logged in and an admin  -->
             <% } else if (user && user.admin === true) { %>
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/listings">All Products</a>
+              <a class="nav-link" href="/admin-listings">My Listings</a>
               <a class="nav-link" href="/favourites">Favourites</a>
               <div class="search-price nav-link">Search By Price</div>
               <a class="nav-link" href="/create-listing">Create Listing</a>
@@ -45,7 +46,7 @@
               <form method="POST" action="/logout">
                 <button class="btn btn-primary"  type="submit">Logout</button>
               </form>
-              <!-- if no one is logged in  -->
+            <!-- if no one is logged in  -->
             <% } else { %>
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/listings">All Products</a>
