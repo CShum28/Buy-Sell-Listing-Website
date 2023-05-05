@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 
     // Clement added this
     const username = req.session.username;
-    const user = await getUserByUsername(username);
+    let user = await getUserByUsername(username);
     // console.log(user);
     res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
@@ -76,11 +76,14 @@ router.get("/search", async (req, res) => {
   try {
     // Get a client frmo connection pool
     const client = await pool.connect();
-    const min = req.query.min *100;
-    const max = req.query.max *100;
+    const min = req.query.min * 100;
+    const max = req.query.max * 100;
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
-    const result = await client.query(`SELECT * FROM listings WHERE price >= $1 AND price <= $2`, [min, max]);
+    const result = await client.query(
+      `SELECT * FROM listings WHERE price >= $1 AND price <= $2`,
+      [min, max]
+    );
 
     // grab ONLY the rows from the query and jams it into the listings variable
     const listings = result.rows;
@@ -97,7 +100,5 @@ router.get("/search", async (req, res) => {
     res.send("Error: " + err);
   }
 });
-
-
 
 module.exports = router;

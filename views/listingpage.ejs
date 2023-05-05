@@ -76,9 +76,11 @@
                 <form method="GET" action="/message/<%= listing.title %>">
                   <button class="btn btn-success" type="submit">Send Message</button>
                 </form>
+                  <% if (user !== undefined) { %>
                  <% if (user.id === listing.user_id || user.admin === true) { %>
              <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
              <form method="POST" action="/listings/sold/<%= listing.id %>"><button><i class="marksoldbutton"></i> Mark As Sold</button></form>
+                <% } %>
                 <% } %>
               </p>
             </div>
