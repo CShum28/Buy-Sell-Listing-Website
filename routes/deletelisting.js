@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   const itemID = req.body["itemID"];
   // Get the ID of the currently logged-in user
   const userID = user.id;
-  // console.log(userID);
+  // console.log(user);
 
   try {
     // Connect to the PostgreSQL database
@@ -44,17 +44,18 @@ router.post("/", async (req, res) => {
     const itemUserID = result.rows[0].user_id;
 
     // If the current user is not the owner of the item, return a 401 error
-    if (itemUserID !== userID) {
+    if (itemUserID !== userID && user.admin !== true) {
       res.status(401).send("Unauthorized access!");
       return;
     }
-    console.log("trying to delete");
+    // console.log("trying to delete");
     // Mark the item as deleted in the listings table
     const deleteItem = "UPDATE listings SET deleted = true WHERE id = $1";
     await client.query(deleteItem, [itemID]);
 
     // Send a success message to the client
     res.send("Successfully deleted!");
+    res.redirect();
   } catch (err) {
     // If there's an error, log it to the console and return a 500 error
     console.error(err);
