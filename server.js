@@ -6,7 +6,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId  } = require("./helpers");
+const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, updateToSold, getAllListings  } = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -61,6 +61,7 @@ const favourites = require("./routes/favourites");
 const createRoutes = require("./routes/create-listing")
 const messageRoutes = require("./routes/messages")
 const adminListingRoutes = require("./routes/admin-listings")
+const deleteRoutes = require("./routes/deletelisting");
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -73,6 +74,7 @@ app.use("/favourites", favourites);
 app.use("/create-listing", createRoutes);
 app.use("/message", messageRoutes);
 app.use("/admin-listings", adminListingRoutes);
+app.use("/delete", deleteRoutes);
 // app.use("/login", loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
@@ -108,7 +110,6 @@ app.get("/", async (req, res) => {
 //   console.log(user);
 //   res.render("message", { user: user });
 // });
-
 
 //-------------------------------------------------------------------------------------------------------
 
@@ -161,6 +162,31 @@ app.post("/logout", (req, res) => {
 app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
+
+//Mark item as sold
+app.post("/listings/sold/:id", async (req, res) => {
+  console.log(req.params.id)
+  await updateToSold(req.params.id)
+    .then((data) => {
+      console.log(data)
+      res.redirect("/listings");
+      // return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+});
+
+
+
+/*
+How to make patch request in ejs
+Pass in the id with the request
+Access resource in the database by the id
+Change the bolean value to true
+*/
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

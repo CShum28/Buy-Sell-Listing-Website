@@ -20,7 +20,8 @@ CREATE TABLE listings (
   photo_url VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   price INTEGER NOT NULL,
-  sold BOOLEAN NOT NULL
+  sold BOOLEAN NOT NULL,
+  deleted BOOLEAN
 );
 
 CREATE TABLE favourites (
