@@ -87,9 +87,9 @@
                   <% } %>
                 <% } %>
                 <button class="btn btn-primary sendsmsbutton">Send SMS</button>
-                <div id="messageBox" class="message-box">
-                  <textarea id="messageBody" class="form-control" rows="3" placeholder="Enter your message..."></textarea>
-                  <button id="sendMessageBtn" class="btn btn-primary">Send</button>
+                <div id="messageBox-<%= listing.id %>" class="message-box">
+                  <textarea id="messageBody-<%= listing.id %>" class="form-control" rows="3" placeholder="Enter your message..."></textarea>
+                  <button id="sendMessageBtn-<%= listing.id %>" class="btn btn-primary">Send</button>
                 </div>
                 <% if (user !== undefined) { %>
                   <% if (user.id === listing.user_id || user.admin === true) { %>

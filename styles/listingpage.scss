@@ -129,3 +129,17 @@
   white-space: nowrap;
   z-index: 1;
 }
+
+.message-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.message-box.show {
+  opacity: 1;
+}
