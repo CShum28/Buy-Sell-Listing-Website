@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getUserByUsername, getAdminListings  } = require("../helpers");
+const { getUserByUsername, getAdminListings } = require("../helpers");
 
 router.get("/", async (req, res) => {
   // Getting user info
@@ -10,9 +10,9 @@ router.get("/", async (req, res) => {
 
   // Getting all of the user's listings
   const adminListings = await getAdminListings(user.id);
-  console.log(adminListings)
+  // console.log(adminListings)
   //Use the listing page to show all of their listings
-  res.render('listingpage', { user: user, listings: adminListings })
-})
+  res.render("listingpage", { user: user, listings: adminListings });
+});
 
 module.exports = router;

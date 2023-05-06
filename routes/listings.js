@@ -12,12 +12,18 @@ router.get("/", async (req, res) => {
     // Get a client frmo connection pool
     const client = await database.connect();
 
+    const username = req.session.username;
+    const user = await getUserByUsername(username);
+
+    console.log(user);
+
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
     const result = await client.query(
       `SELECT listings.*, favourites.is_favourite
       FROM listings
-      LEFT JOIN favourites ON listings.id = favourites.listing_id
-      WHERE listings.deleted = false OR listings.deleted IS NULL`
+      LEFT JOIN favourites ON listings.id = favourites.listing_id AND favourites.user_id = $1
+      WHERE (listings.deleted = false OR listings.deleted IS NULL)`,
+      [user.id]
     );
 
     // grab ONLY the rows from the query and jams it into the listings variable
@@ -29,8 +35,6 @@ router.get("/", async (req, res) => {
 
     // Render the listings page and pass the listings variable into it!
 
-    const username = req.session.username;
-    const user = await getUserByUsername(username);
     res.render("listingpage", { listings: listings, user: user });
   } catch (err) {
     // If error, log the error to the console
@@ -57,7 +61,7 @@ router.get("/search", async (req, res) => {
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
-    console.log(listings);
+    // console.log(listings);
 
     // Render the listings page and pass the listings variable into it!
 
@@ -91,7 +95,7 @@ router.get("/search", async (req, res) => {
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
-    console.log(listings);
+    // console.log(listings);
 
     // Render the listings page and pass the listings variable into it!
     res.render("listingpage", { listings: listings });
