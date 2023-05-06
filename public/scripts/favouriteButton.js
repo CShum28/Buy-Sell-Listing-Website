@@ -21,3 +21,31 @@ $(document).ready(() => {
     }
   });
 });
+
+$(document).ready(function () {
+  $(".favorite-button").hover(
+    function (e) {
+      var offset = 10; // Adjust the offset as needed
+      var posX = e.pageX + offset;
+      var posY = e.pageY + offset;
+
+      $('<div class="hover-content">Click to add to your favourites!</div>')
+        .css({
+          position: "absolute",
+          top: posY + "px",
+          left: posX + "px",
+          padding: "5px",
+          backgroundColor: "#333",
+          color: "#fff",
+          borderRadius: "3px",
+          fontSize: "12px",
+          whiteSpace: "nowrap",
+          zIndex: "9999",
+        })
+        .appendTo("body");
+    },
+    function () {
+      $(".hover-content").remove();
+    }
+  );
+});

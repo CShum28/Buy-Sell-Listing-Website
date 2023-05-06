@@ -29,74 +29,77 @@
   </head>
   <body>
     <%- include('partials/header') %>
-    <div class="container listings-container">
-      <!-- <h1 class="my-4">Listing Page</h1> -->
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="container-fluid listings-container">
+      <div class="row row-cols-6">
         <% listings.forEach((listing) => { %>
-        <!--
-          Determine whether item is sold. use if statement
-          Create a new div with same height and width as current card. set opacity to 50% color black.
-          inside the div as a p tag then write SOLD OUT in white.
-          Bonus points: Look up how to angle your text at 45 degree angle
-          Set the class on all buttons to be disabled
-          -->
+          <div class="col-3 mb-4">
+            <% if (listing.sold) { %>
+              <div class="sold">
+                <p class="sold-text">ITEM SOLD</p>
+              </div>
+            <% } %>
+            <div class="card h-100" data-itemid="<%= listing.id %>" data-userid="<%= listing.user_id %>">
+              <img src="<%= listing.photo_url %>" />
 
-        <div class="col">
+              <div class="card-body">
+                <h5 class="card-title"><%= listing.title %></h5>
+                <p class="card-text"><%= listing.description %></p>
+                <div class="priceandfavourite">
 
-           <% if (listing.sold) { %>
-             <div class="sold">
-           <p class="sold-text">ITEM SOLD</p>
-           </div>
-        <% } %>
-
-          <div
-            class="card h-100"
-            data-itemid="<%= listing.id %>"
-            data-userid="<%= listing.user_id %>">
-            <img
-              src="<%= listing.photo_url %>"
-            />
-
-
-            <div class="card-body">
-
-              <h5 class="card-title"><%= listing.title %></h5>
-              <p class="card-text"><%= listing.description %></p>
-              <p class="card-text"> <b>Price:</b> $<%= listing.price / 100 %></p>
-              <p class="card-text">
-                <small class="text-muted"
-                  >Posted <%= listing.posted_at %></small
-                >
-                <button class="btn btn-link favorite-button">
+                </div>
+                <p class="card-text"><b>Price:</b> $<%= listing.price / 100 %> <button class="btn btn-link favorite-button">
                   <i class="fas fa-heart"></i>
-                </button>
-                <!-- message admin button -->
-                <% if (user !== undefined) { %>
-                  <% if (!user.admin){ %>
-                    <form method="GET" action="/message/<%= listing.title %>">
-                    <input type="hidden" name="senderId" value="<%= listing.user_id %>">
-                    <button class="btn btn-success custombutton" type="submit">Send Message</button>
-                    </form>
-                  <% } else if (user.admin) { %>
-                    <form method="GET" action="/message/select/<%= listing.title %>">
-                    <button class="btn btn-success custombutton" type="submit">View Messages</button>
-                    </form>
-                    <form method="GET" action="/message/<%= listing.title %>">
-                    <button class="btn btn-success custombutton" type="submit">Send Message</button>
-                    </form>
+                </button></p>
+                <p class="card-text">
+
+
+                </p>
+              </div>
+
+              <div class="card-footer d-flex align-items-center">
+                <div class="row">
+                  <% if (user !== undefined) { %>
+                    <% if (!user.admin){ %>
+                      <div class="col-6">
+                        <form method="GET" action="/message/<%= listing.title %>">
+                          <input type="hidden" name="senderId" value="<%= listing.user_id %>">
+                          <button class="btn btn-success custom-button" type="submit">Send Message</button>
+                        </form>
+                      </div>
+                    <% } else if (user.admin) { %>
+                      <div class="col-6">
+                        <form method="GET" action="/message/select/<%= listing.title %>">
+                          <button class="btn btn-success custom-button" type="submit">View Messages</button>
+                        </form>
+                      </div>
+                      <div class="col-6">
+                        <form method="GET" action="/message/<%= listing.title %>">
+                          <button class="btn btn-success custom-button" type="submit">Send Message</button>
+                        </form>
+                      </div>
+                    <% } %>
                   <% } %>
-                <% } %>
-                <% if (user !== undefined) { %>
-                  <% if (user.id === listing.user_id || user.admin === true) { %>
-                    <button class="btn btn-success custom button"><i class=" deletebutton"></i> Delete</button>
-                    <form method="POST" action="/listings/sold/<%= listing.id %>"><button class="btn btn-success"><i class=" marksoldbutton"></i> Mark As Sold</button></form>
+                  <% if (user !== undefined) { %>
+                    <% if (user.id === listing.user_id || user.admin === true) { %>
+                      <div class="col-6">
+                        <form method="POST" action="/listings/sold/<%= listing.id %>">
+                          <button class="btn btn-success custom-button" type="submit">
+                            <i class="marksoldbutton"></i> Mark As Sold
+                          </button>
+                        </form>
+                      </div>
+                      <div class="col-6">
+                        <button class="btn btn-success custom-button">
+                          <i class="deletebutton"></i> Delete
+                        </button>
+                      </div>
+                    <% } %>
                   <% } %>
-                <% } %>
-              </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-            <% }) %>
+        <% }) %>
       <!-- Pagination -->
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
