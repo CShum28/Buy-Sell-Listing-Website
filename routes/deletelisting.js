@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   const itemID = req.body["itemID"];
   // Get the ID of the currently logged-in user
   const userID = user.id;
-  // console.log(user);
+  console.log(user);
 
   try {
     // Connect to the PostgreSQL database
@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
 
     // Send a success message to the client
     res.send("Successfully deleted!");
-    res.redirect();
+    // res.redirect("/listings");
   } catch (err) {
     // If there's an error, log it to the console and return a 500 error
     console.error(err);

@@ -14,7 +14,10 @@ router.get("/", async (req, res) => {
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
     const result = await client.query(
-      "SELECT * FROM listings WHERE deleted = false OR deleted IS NULL"
+      `SELECT listings.*, favourites.is_favourite
+      FROM listings
+      LEFT JOIN favourites ON listings.id = favourites.listing_id
+      WHERE listings.deleted = false OR listings.deleted IS NULL`
     );
 
     // grab ONLY the rows from the query and jams it into the listings variable
@@ -22,7 +25,7 @@ router.get("/", async (req, res) => {
 
     // Release the client. Need to use release instead of pool.end(), caused lots of problems!
     client.release();
-    // console.log(listings);
+    console.log(listings);
 
     // Render the listings page and pass the listings variable into it!
 

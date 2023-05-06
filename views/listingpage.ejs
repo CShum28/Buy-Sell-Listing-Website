@@ -47,7 +47,7 @@
                 <div class="priceandfavourite">
 
                 </div>
-                <p class="card-text"><b>Price:</b> $<%= listing.price / 100 %> <button class="btn btn-link favourite-button <%= listing.isFavourite ? 'favorite' : '' %>">
+                <p class="card-text"><b>Price:</b> $<%= listing.price / 100 %> <button class="btn btn-link favourite-button <%= listing.is_favourite ? 'favourite' : '' %>">
                   <i class="fas fa-heart"></i>
                 </button></p>
                 <p class="card-text">
@@ -89,7 +89,7 @@
                         </form>
                       </div>
                       <div class="col-6">
-                        <button class="btn btn-success custom-button">
+                        <button class="btn btn-success custom-button deletebutton">
                           <i class="deletebutton"></i> Delete
                         </button>
                       </div>
@@ -101,7 +101,7 @@
           </div>
         <% }) %>
       <!-- Pagination -->
-      <nav aria-label="Page navigation example">
+      <!-- <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
@@ -115,7 +115,7 @@
             <a class="page-link" href="#">Next</a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
     </div>
   </div>
     <%- include('partials/footer') %>

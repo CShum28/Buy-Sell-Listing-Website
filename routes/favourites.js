@@ -30,12 +30,12 @@ router.post("/", async (req, res) => {
 
     // Need to check if the item is already in favourites!
     const checkIfFavourite =
-      "SELECT listings.*, favorites.user_id IS NOT NULL AS is_favorite FROM listings LEFT JOIN favorites ON listings.id = favorites.listing_id AND favorites.user_id = $1 WHERE listings.deleted = false OR listings.deleted IS NULL";
+      "SELECT * FROM favourites WHERE listing_id = $1 AND user_id = $2";
     const result = await client.query(checkIfFavourite, [itemID, userID]);
 
     // If a result is returned, it is implied that the item already exists in the favourites table.
     if (result.rows.length > 0) {
-      console.log("Can't add a favourite a second time!");
+      // console.log("Can't add a favourite a second time!");
       client.release();
       res.sendStatus(200);
       return;
@@ -70,7 +70,7 @@ router.get("/", async (req, res) => {
     const client = await pool.connect();
     // Query to get the favourite listings for the user from the listings and favourites tables
     const getFavouriteListings =
-      "SELECT listings.title, listings.description, listings.price FROM listings JOIN favourites ON listings.id = favourites.listing_id WHERE favourites.user_id = $1;";
+      "SELECT listings.title, listings.description, listings.price, listings.photo_url FROM listings JOIN favourites ON listings.id = favourites.listing_id WHERE favourites.user_id = $1;";
     // Execute the query with the user ID parameter and get the result set
     const favouriteListingsResult = await client.query(getFavouriteListings, [
       userID,
