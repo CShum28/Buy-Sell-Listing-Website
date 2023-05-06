@@ -6,7 +6,15 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
-const { getUserByUsername, getUserById, getUsers, getListingInfo, getUserId, updateToSold, getAllListings  } = require("./helpers");
+const {
+  getUserByUsername,
+  getUserById,
+  getUsers,
+  getListingInfo,
+  getUserId,
+  updateToSold,
+  getAllListings,
+} = require("./helpers");
 const { database } = require("./db/connection");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -58,9 +66,9 @@ const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const listingsRoutes = require("./routes/listings");
 const favourites = require("./routes/favourites");
-const createRoutes = require("./routes/create-listing")
-const messageRoutes = require("./routes/messages")
-const adminListingRoutes = require("./routes/admin-listings")
+const createRoutes = require("./routes/create-listing");
+const messageRoutes = require("./routes/messages");
+const adminListingRoutes = require("./routes/admin-listings");
 const deleteRoutes = require("./routes/deletelisting");
 // const loginRoutes = require("./routes/login")
 // Mount all resource routes
@@ -69,7 +77,7 @@ const deleteRoutes = require("./routes/deletelisting");
 app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
-app.use("/listings", listingsRoutes);
+app.use("/", listingsRoutes);
 app.use("/favourites", favourites);
 app.use("/create-listing", createRoutes);
 app.use("/message", messageRoutes);
@@ -82,11 +90,11 @@ app.use("/delete", deleteRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", async (req, res) => {
-  const username = req.session.username;
-  const user = await getUserByUsername(username);
-  res.render("index", { user: user });
-});
+// app.get("/", async (req, res) => {
+//   const username = req.session.username;
+//   const user = await getUserByUsername(username);
+//   res.render("index", { user: user });
+// });
 
 // message board - CONTINUE WORKING HERE
 
@@ -165,19 +173,17 @@ app.get("/favourites", (req, res) => {
 
 //Mark item as sold
 app.post("/listings/sold/:id", async (req, res) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   await updateToSold(req.params.id)
     .then((data) => {
-      console.log(data)
+      console.log(data);
       res.redirect("/listings");
       // return data;
     })
     .catch((err) => {
       console.error(err);
-    })
+    });
 });
-
-
 
 /*
 How to make patch request in ejs
@@ -185,8 +191,6 @@ Pass in the id with the request
 Access resource in the database by the id
 Change the bolean value to true
 */
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
