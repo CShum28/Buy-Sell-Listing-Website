@@ -16,6 +16,7 @@ router.get("/:id", async(req, res) => {
   const user = await getUserByUsername(username)
 
   const receiverId = req.query.senderId;
+  console.log(req)
   const chatLog = await messagesBetweenUserAndAdmin(user.id, receiverId, listingInfo.id)
 
   res.render('message', { user, listingInfo, messages: chatLog, receiverId })
