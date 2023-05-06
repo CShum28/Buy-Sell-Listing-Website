@@ -19,11 +19,7 @@ router.get("/", async (req, res) => {
 
     // SQL query on the 'listings' table using the client that was retrieved from the pool. Await means asynchronous.
     const result = await client.query(
-      `SELECT listings.*, favourites.is_favourite
-      FROM listings
-      LEFT JOIN favourites ON listings.id = favourites.listing_id AND favourites.user_id = $1
-      WHERE (listings.deleted = false OR listings.deleted IS NULL)`,
-      [user.id]
+      "SELECT * FROM listings WHERE deleted = false OR deleted IS NULL"
     );
 
     // grab ONLY the rows from the query and jams it into the listings variable
