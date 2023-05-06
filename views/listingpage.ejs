@@ -47,7 +47,7 @@
                 <div class="priceandfavourite">
 
                 </div>
-                <p class="card-text"><b>Price:</b> $<%= listing.price / 100 %> <button class="btn btn-link favorite-button">
+                <p class="card-text"><b>Price:</b> $<%= listing.price / 100 %> <button class="btn btn-link favourite-button <%= listing.isFavourite ? 'favorite' : '' %>">
                   <i class="fas fa-heart"></i>
                 </button></p>
                 <p class="card-text">

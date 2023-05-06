@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 
     // Need to check if the item is already in favourites!
     const checkIfFavourite =
-      "SELECT * FROM favourites WHERE listing_id = $1 AND user_id = $2";
+      "SELECT listings.*, favorites.user_id IS NOT NULL AS is_favorite FROM listings LEFT JOIN favorites ON listings.id = favorites.listing_id AND favorites.user_id = $1 WHERE listings.deleted = false OR listings.deleted IS NULL";
     const result = await client.query(checkIfFavourite, [itemID, userID]);
 
     // If a result is returned, it is implied that the item already exists in the favourites table.

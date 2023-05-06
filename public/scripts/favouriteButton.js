@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $(".favorite-button").on("click", async (event) => {
+  $(".favourite-button").on("click", async (event) => {
     // console.log("Test!");
     const itemID = $(event.currentTarget).parents(".card").data("itemid");
 
@@ -23,7 +23,7 @@ $(document).ready(() => {
 });
 
 $(document).ready(function () {
-  $(".favorite-button").hover(
+  $(".favourite-button").hover(
     function (e) {
       var offset = 10; // Adjust the offset as needed
       var posX = e.pageX + offset;
