@@ -75,21 +75,21 @@
                   <% if (!user.admin){ %>
                     <form method="GET" action="/message/<%= listing.title %>">
                     <input type="hidden" name="senderId" value="<%= listing.user_id %>">
-                    <button class="btn btn-success" type="submit">Send Message</button>
+                    <button class="btn btn-success custombutton" type="submit">Send Message</button>
                     </form>
                   <% } else if (user.admin) { %>
                     <form method="GET" action="/message/select/<%= listing.title %>">
-                    <button class="btn btn-success" type="submit">View Messages</button>
+                    <button class="btn btn-success custombutton" type="submit">View Messages</button>
                     </form>
                     <form method="GET" action="/message/<%= listing.title %>">
-                    <button class="btn btn-success" type="submit">Send Message</button>
+                    <button class="btn btn-success custombutton" type="submit">Send Message</button>
                     </form>
                   <% } %>
                 <% } %>
                 <% if (user !== undefined) { %>
                   <% if (user.id === listing.user_id || user.admin === true) { %>
-                    <button><i class="fas fa-trash-alt deletebutton"></i> Delete</button>
-                    <form method="POST" action="/listings/sold/<%= listing.id %>"><button><i class="marksoldbutton"></i> Mark As Sold</button></form>
+                    <button class="btn btn-success custom button"><i class=" deletebutton"></i> Delete</button>
+                    <form method="POST" action="/listings/sold/<%= listing.id %>"><button class="btn btn-success"><i class=" marksoldbutton"></i> Mark As Sold</button></form>
                   <% } %>
                 <% } %>
               </p>
